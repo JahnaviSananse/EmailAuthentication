@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "673368431687",
+    "project_id": "emailauth-526e8",
+    "storage_bucket": "emailauth-526e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673368431687:android:f2d0c85e3095ab2c46e562",
+        "android_client_info": {
+          "package_name": "com.loginloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673368431687-ir16520n4goo9mm85b12gdnkjejalvro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7L-wzzhm9KXQnqpf70GGe3Tx-EoxNtcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673368431687-ir16520n4goo9mm85b12gdnkjejalvro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

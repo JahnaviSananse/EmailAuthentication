@@ -1,0 +1,5 @@
+export const LOGINDATA = {
+    LOGIN_START = 'LOGIN_START',
+    LOGIN_SUCCESS = 'LOGIN_SUCCESS',
+    LOGIN_STOP = 'LOGIN_STOP',
+}

@@ -6,27 +6,30 @@ import {
   Text,
   Image,
   TextInput,
+  ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import {connect} from 'react-redux';
+import {dataFetch} from './Redux/Login.actions';
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyBhFQYVOGVRyTdkIopfzqJE4GKMj2irnA4',
-  authDomain: 'emailauth-526e8.firebaseapp.com',
-  projectId: 'emailauth-526e8',
-  storageBucket: 'emailauth-526e8.appspot.com',
-  messagingSenderId: '673368431687',
-  appId: '1:673368431687:web:6041013166acd3e746e562',
-};
+// var firebaseConfig = {
+//   apiKey: 'AIzaSyBhFQYVOGVRyTdkIopfzqJE4GKMj2irnA4',
+//   authDomain: 'emailauth-526e8.firebaseapp.com',
+//   projectId: 'emailauth-526e8',
+//   storageBucket: 'emailauth-526e8.appspot.com',
+//   messagingSenderId: '673368431687',
+//   appId: '1:673368431687:web:6041013166acd3e746e562',
+// };
 
-const login_nav = ({navigation}) => {
+const login_nav = props => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [fname, setFname] = useState('');
 
-  useEffect(() => {
-    firebase.initializeApp(firebaseConfig);
-  }, []);
+  // useEffect(() => {
+  // firebase.initializeApp(firebaseConfig);
+  // }, []);
 
   const validateForgot = () => {
     let isValidate = false;
@@ -87,7 +90,7 @@ const login_nav = ({navigation}) => {
         <View style={{alignSelf: 'flex-end'}}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('fogotpass_nav');
+              props.navigation.navigate('fogotpass_nav');
             }}>
             <Text style={styles.forgotPass}> Forgot Password? </Text>
           </TouchableOpacity>
@@ -97,13 +100,11 @@ const login_nav = ({navigation}) => {
           <TouchableOpacity
             onPress={() => {
               if (validateForgot()) {
-                firebase
-                  .auth()
-                  .createUserWithEmailAndPassword(email, pass)
-                  .then(response => {
-                    console.log(response);
-                    navigation.navigate('LoginNext');
-                  });
+                props.dataFetch({
+                  email: email,
+                  pass: pass,
+                  navigation: props.navigation,
+                });
               }
             }}>
             <Text style={styles.loginText}> LOG IN </Text>
@@ -125,20 +126,41 @@ const login_nav = ({navigation}) => {
       </View>
     );
   };
+
   return (
-    <SafeAreaView
-      style={{
-        height: '100%',
-        backgroundColor: 'white',
-        //justifyContent: 'center',
-      }}>
-      {renderTabs()}
-      {renderSignup()}
-    </SafeAreaView>
+    <>
+      {props.loading ? (
+        <View
+          style={{
+            height: '100%',
+            flex: 1,
+            // backgroundColor: 'black',
+            backgroundColor: 'rgba(237, 239, 242,0.5)',
+
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        <SafeAreaView
+          style={{
+            height: '100%',
+            backgroundColor: 'white',
+            //justifyContent: 'center',
+          }}>
+          {renderTabs()}
+          {renderSignup()}
+        </SafeAreaView>
+      )}
+    </>
   );
 };
-
-export default login_nav;
 
 const styles = StyleSheet.create({
   textinput: {
@@ -222,3 +244,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
+
+const mapStateToProps = state => ({
+  loading: state.dataFetch.isLoading,
+});
+
+// export default login_nav;
+export default connect(mapStateToProps, {
+  dataFetch,
+})(login_nav);

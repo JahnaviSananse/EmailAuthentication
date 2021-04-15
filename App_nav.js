@@ -12,7 +12,7 @@ import LoginNext from './LoginNext';
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const App_nav = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login_nav">
@@ -25,4 +25,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App_nav;

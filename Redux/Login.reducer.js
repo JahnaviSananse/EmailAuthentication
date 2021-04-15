@@ -2,13 +2,15 @@ import {LOGINDATA} from './Login.types';
 
 const INITIAL_DATA = {
   data: [],
-  error: undefined,
+  error: [],
   isLoading: false,
 };
 
 const LoginReducer = (state = INITIAL_DATA, action) => {
-  switch (action) {
+  switch (action.type) {
     case LOGINDATA.LOGIN_START:
+      console.log('>>>>>>>>>>>>>>>>>>', state.isLoading);
+
       return {
         ...state,
         isLoading: true,
@@ -26,7 +28,7 @@ const LoginReducer = (state = INITIAL_DATA, action) => {
       };
 
     default:
-      state;
+      return state;
   }
 };
 export default LoginReducer;

@@ -42,7 +42,7 @@ export const dataFetch = data => dispatch => {
       console.log(response);
 
       setTimeout(() => {
-        returnToDispatch(dispatch, LOGINDATA.LOGIN_SUCCESS, response);
+        returnToDispatch(dispatch, LOGINDATA.LOGIN_SUCCESS);
       }, 5000);
       data.navigation.navigate('signin_nav');
     })

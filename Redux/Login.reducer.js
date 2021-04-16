@@ -1,7 +1,6 @@
 import {LOGINDATA, SIGNIN_DATA} from './Login.types';
 
 const INITIAL_DATA = {
-  data: [],
   authUser: [],
   error: [],
   isLoading: false,
@@ -20,7 +19,7 @@ const LoginReducer = (state = INITIAL_DATA, action) => {
     case LOGINDATA.LOGIN_SUCCESS:
       return {
         ...state,
-        data: [action.payload],
+
         isLoading: false,
       };
     case SIGNIN_DATA.SIGNIN_SUCCESS:

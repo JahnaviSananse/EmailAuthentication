@@ -1,4 +1,4 @@
-import {LOGINDATA} from './Login.types';
+import {LOGINDATA, SIGNIN_DATA} from './Login.types';
 import firebase from '../firebase.utils';
 
 // export const LoginStart = () => ({
@@ -44,10 +44,31 @@ export const dataFetch = data => dispatch => {
       setTimeout(() => {
         returnToDispatch(dispatch, LOGINDATA.LOGIN_SUCCESS, response);
       }, 5000);
-      data.navigation.navigate('LoginNext');
+      data.navigation.navigate('signin_nav');
     })
     .catch(error => {
       returnToDispatch(dispatch, LOGINDATA.LOGIN_STOP, error.message);
+    });
+};
+
+export const loginRequest = data => dispatch => {
+  console.log(
+    '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<...........loginRequest..........',
+  );
+  returnToDispatch(dispatch, SIGNIN_DATA.SIGNIN_START);
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(data.email, data.pass)
+    .then(response => {
+      console.log(response);
+
+      setTimeout(() => {
+        returnToDispatch(dispatch, SIGNIN_DATA.SIGNIN_SUCCESS, response);
+      }, 5000);
+      data.navigation.navigate('Dashboard');
+    })
+    .catch(error => {
+      returnToDispatch(dispatch, SIGNIN_DATA.SIGNIN_STOP, error.message);
     });
 };
 

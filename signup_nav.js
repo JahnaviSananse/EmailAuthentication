@@ -22,7 +22,7 @@ import {dataFetch} from './Redux/Login.actions';
 //   appId: '1:673368431687:web:6041013166acd3e746e562',
 // };
 
-const login_nav = props => {
+const signup_nav = props => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [fname, setFname] = useState('');
@@ -90,9 +90,9 @@ const login_nav = props => {
         <View style={{alignSelf: 'flex-end'}}>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate('fogotpass_nav');
+              props.navigation.navigate('signin_nav');
             }}>
-            <Text style={styles.forgotPass}> Forgot Password? </Text>
+            <Text style={styles.forgotPass}> Already have an Account? </Text>
           </TouchableOpacity>
         </View>
 
@@ -107,7 +107,7 @@ const login_nav = props => {
                 });
               }
             }}>
-            <Text style={styles.loginText}> LOG IN </Text>
+            <Text style={styles.loginText}> SIGN UP </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -155,6 +155,7 @@ const login_nav = props => {
             //justifyContent: 'center',
           }}>
           {renderTabs()}
+
           {renderSignup()}
         </SafeAreaView>
       )}
@@ -187,14 +188,22 @@ const styles = StyleSheet.create({
     marginLeft: '35%',
   },
   headText: {
-    marginTop: 10,
+    marginTop: 5,
     marginLeft: 9,
     fontSize: 18,
     marginBottom: 5,
   },
   loginButton: {
     width: '40%',
-    marginTop: 20,
+    marginTop: 10,
+    marginLeft: 90,
+    left: 40,
+    backgroundColor: 'green',
+    borderRadius: 10,
+  },
+  signinButton: {
+    width: '40%',
+    marginTop: 5,
     marginLeft: 90,
     left: 40,
     backgroundColor: 'green',
@@ -211,6 +220,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   loginText: {
+    height: 50,
+    fontSize: 20,
+    color: 'black',
+    fontWeight: 'bold',
+    padding: 10,
+    left: 35,
+  },
+  signinText: {
     height: 50,
     fontSize: 20,
     color: 'black',
@@ -252,4 +269,4 @@ const mapStateToProps = state => ({
 // export default login_nav;
 export default connect(mapStateToProps, {
   dataFetch,
-})(login_nav);
+})(signup_nav);

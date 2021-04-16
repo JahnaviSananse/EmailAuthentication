@@ -1,7 +1,8 @@
-import {LOGINDATA} from './Login.types';
+import {LOGINDATA, SIGNIN_DATA} from './Login.types';
 
 const INITIAL_DATA = {
   data: [],
+  authUser: [],
   error: [],
   isLoading: false,
 };
@@ -9,6 +10,7 @@ const INITIAL_DATA = {
 const LoginReducer = (state = INITIAL_DATA, action) => {
   switch (action.type) {
     case LOGINDATA.LOGIN_START:
+    case SIGNIN_DATA.SIGNIN_START:
       console.log('>>>>>>>>>>>>>>>>>>', state.isLoading);
 
       return {
@@ -18,10 +20,18 @@ const LoginReducer = (state = INITIAL_DATA, action) => {
     case LOGINDATA.LOGIN_SUCCESS:
       return {
         ...state,
-        item: [action.payload],
+        data: [action.payload],
         isLoading: false,
       };
+    case SIGNIN_DATA.SIGNIN_SUCCESS:
+      return {
+        ...state,
+        authUser: [action.payload],
+        isLoading: false,
+      };
+
     case LOGINDATA.LOGIN_STOP:
+    case SIGNIN_DATA.SIGNIN_STOP:
       return {
         ...state,
         isLoading: false,

@@ -8,6 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {connect} from 'react-redux';
+import {Logout} from './Redux/Login.actions';
 
 const Dashboard = props => {
   return (
@@ -22,15 +24,14 @@ const Dashboard = props => {
       </Text>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate('signup_nav');
+          // props.navigation.navigate('signup_nav');
+          props.Logout(props.navigation);
         }}>
         <Text style={styles.loginText}> LOG OUT </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
-
-export default Dashboard;
 
 const styles = StyleSheet.create({
   textinput: {
@@ -118,3 +119,9 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
+// const mapStateToProps = (state) => {
+//   logoutSuccess : state.dataFetch.isLoading;
+// }
+export default connect(null, {
+  Logout,
+})(Dashboard);

@@ -1,4 +1,4 @@
-import {LOGINDATA, SIGNIN_DATA} from './Login.types';
+import {LOGINDATA, SIGNIN_DATA, LOGOUT_DATA} from './Login.types';
 import firebase from '../firebase.utils';
 
 // export const LoginStart = () => ({
@@ -70,6 +70,15 @@ export const loginRequest = data => dispatch => {
     .catch(error => {
       returnToDispatch(dispatch, SIGNIN_DATA.SIGNIN_STOP, error.message);
     });
+};
+
+export const Logout = navigation => dispatch => {
+  returnToDispatch(dispatch, LOGOUT_DATA.LOGOUT_START);
+  setTimeout(() => {
+    returnToDispatch(dispatch, LOGOUT_DATA.LOGOUT_SUCCESS);
+
+    navigation.navigate('signin_nav');
+  }, 3000);
 };
 
 returnToDispatch = (dispatch, type, payload) => {

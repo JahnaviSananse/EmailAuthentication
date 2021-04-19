@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const Dashboard = () => {
+const Dashboard = props => {
   return (
     <SafeAreaView
       style={{
@@ -17,7 +17,15 @@ const Dashboard = () => {
         backgroundColor: 'white',
         //justifyContent: 'center',
       }}>
-      <Text style={{fontSize: 30}}>Welcome!</Text>
+      <Text style={{fontSize: 30, alignSelf: 'center', marginTop: '50%'}}>
+        Welcome, You are SignedIn !!!
+      </Text>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('signup_nav');
+        }}>
+        <Text style={styles.loginText}> LOG OUT </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -78,8 +86,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     fontWeight: 'bold',
-    padding: 10,
-    left: 35,
+    padding: 12,
+    marginLeft: '35%',
+    marginTop: '10%',
+    width: '30%',
+    backgroundColor: 'green',
+    borderRadius: 10,
   },
   guestText: {
     height: 50,

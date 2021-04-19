@@ -17,7 +17,13 @@ const LoginNext = () => {
         backgroundColor: 'white',
         //justifyContent: 'center',
       }}>
-      <Text style={{fontSize: 30}}>Logged in</Text>
+      <Text style={{fontSize: 25}}>You are Logged In!!!</Text>
+      {/* <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('signup_nav');
+        }}>
+        <Text style={styles.loginText}> LOG OUT </Text>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };

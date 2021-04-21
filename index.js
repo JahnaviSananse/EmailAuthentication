@@ -16,13 +16,14 @@ import {Provider} from 'react-redux';
 import App_nav from './App_nav';
 import {name as appName} from './app.json';
 import configureStore from './Redux/store';
+import feed from './feed';
 
 const store = configureStore();
 
-const RNRedux = () => (
-  <Provider store={store}>
-    <App_nav />
-  </Provider>
-);
+// const RNRedux = () => (
+//   <Provider store={store}>
+//     <App_nav />
+//   </Provider>
+// );
 
-AppRegistry.registerComponent(appName, () => RNRedux);
+AppRegistry.registerComponent(appName, () => feed);

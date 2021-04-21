@@ -1,0 +1,5 @@
+export const FEED = {
+  FEED_START: 'FEED_START',
+  FEED_SUCCESS: 'FEED_SUCCESS',
+  FEED_STOP: 'FEED_STOP',
+};
